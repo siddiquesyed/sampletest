@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slab Tiles - Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #0A0A0A4c;
+            color: white;
+            padding: 10px 20px;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .menu ul li {
+            margin: 0 15px;
+        }
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .menu ul li a i {
+            margin-right: 5px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        .search-bar input {
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+        }
+        .search-bar button {
+            padding: 8px 15px;
+            font-size: 16px;
+            border: none;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+        .search-bar button:hover {
+            background-color: #777;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .main {
+            padding-bottom: 80px; 
+        }
+        main {
+            padding: 20px;
+        }
+        .product-section {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .product-header h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: calc(33% - 20px);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px; /* Fixed height for images */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+        }
+        .product-info {
+            padding: 15px;
+            flex-grow: 1; /* Allows product info to take up remaining space */
+        }
+        .product-info h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .product-info p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .add-to-cart {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+        .cart-summary {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+            clear: both;
+            box-sizing: border-box;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 40%;
+                background-color: #333;
+                position: absolute;
+                top: 52px;
+                right:-20px;
+                text-align: right;
+
+            }
+            .product-item{
+                flex-direction: column;
+                width: 100%;
+            }
+            .menu ul {
+                flex-direction: column;
+                /* align-items: center; */
+            }
+          .menu ul li {
+            padding:10px;
+          }
+            .menu-toggle {
+                display: block;
+            }
+            .menu.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">TileSanitary</a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                ☰
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="customer-index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="Customer-SlabTiles.html">Tiles</a></li>
+                    <li><a href="customer-sanitary.html">Sanitary</a></li>
+                    <li><a href="customer-contact.html"><i class="fa-solid fa-phone"></i> Contact Us</a></li>
+                    <li><a href="customer-cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="product-section">
+            <div class="product-header">
+                <h2>Slab Tiles Collection</h2>
+            </div>
+            <div class="product-list" id="product-list">
+                <!-- Product items will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="foot-panel1" onclick="smoothScrollToTop()" id="back-to-top">
+            Back to top
+        </div>
+        <div class="foot-panel4">
+            <div class="copy-right">
+                <p>© 2023 TileSanitary.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+         // Array to store product data
+const products = [
+    { name: 'Granite Slab', price: 1500, description: 'High-quality granite slab with a smooth finish.', size: '120x60 cm', image: 'Slab.jpg' },
+    { name: 'Elevation Tiles', price: 1500, description: 'High-quality elevation tiles with a stylish finish.', size: '120x60 cm', image: 'Elevation.jpg' },
+    { name: 'Floor Tile', price: 2000, description: 'Elegant marble slab with unique veining patterns.', size: '120x60 cm', image: 'Floor.jpg' },
+    { name: '3D Tiles', price: 1500, description: 'High-quality 3D tiles with a modern finish.', size: '120x60 cm', image: '3DTiles.jpg' },
+    { name: 'Ceramic Wall Tiles', price: 1500, description: 'High-quality ceramic wall tiles with a polished look.', size: '120x60 cm', image: 'Ceramicwall-Tiles.jpg' },
+    { name: 'Woodmats', price: 1500, description: 'High-quality woodmats with a natural finish.', size: '120x60 cm', image: 'Woodmat.jpg' },
+    { name: 'Parking Tiles', price: 1500, description: 'Durable parking tiles with a textured surface.', size: '120x60 cm', image: 'Parking.jpg' },
+    { name: 'Polished Tiles', price: 1500, description: 'Polished tiles with a high gloss finish.', size: '120x60 cm', image: 'Polished.jpg' }
+];
+
+// Function to dynamically generate product items
+function generateProductItems() {
+    const productList = document.querySelector('.product-list');
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.classList.add('product-item');
+
+        productItem.innerHTML = `
+            <img class="product-image" src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <p>Size: ${product.size}</p>
+                <p>Price: ₹${product.price}</p>
+                <button class="add-to-cart" onclick="addToCart('${product.name}', ${product.price}, '${product.description}', '${product.size}', '${product.image}')">Add to Cart</button>
+            </div>
+        `;
+        
+        productList.appendChild(productItem);
+    });
+}
+
+// Cart array to hold items added to the cart
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Function to handle adding products to the cart
+function addToCart(productName, price, description, size, image) {
+    let product = cart.find(item => item.name === productName);
+    if (product) {
+        product.quantity++;
+    } else {
+        cart.push({ name: productName, price: price, description: description, size: size, image: image, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    alert(`${productName} added to cart successfully.`);
+}
+
+// Function to update the cart UI
+function updateCartUI() {
+    let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    if (document.querySelector('#total-items')) {
+        document.querySelector('#total-items').textContent = totalItems;
+        document.querySelector('#total-price').textContent = totalPrice;
+    }
+}
+
+// Toggle mobile menu
+function toggleMenu() {
+    const menu = document.querySelector('.menu');
+    menu.classList.toggle('active');
+}
+
+// Smooth scroll to top
+function smoothScrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Generate product items on page load
+window.onload = generateProductItems;
+ 
+     </script>
+</body>
+</html>

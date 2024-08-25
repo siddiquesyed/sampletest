@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://kit.fontawesome.com/6272304e5d.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #0A0A0A4c;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 10px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 40%;
+                background-color: #333;
+                position: absolute;
+                top: 65px;
+                right:-20px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .signup-container form {
+            width: 300px;
+        }
+
+        .signup-container .form-control {
+            margin-bottom: 15px;
+        }
+
+        .signup-container .btn {
+            width: 100%;
+        }
+
+        .password {
+            position: relative;
+        }
+
+        .password i {
+            position: absolute;
+            color: black;
+            top: 11px;
+            right: 30px;
+            cursor: pointer;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">TileSanitary</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="company-index.html"><i class="px-2 fa-solid fa-house"></i>Home</a></li>                
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                &#9776;
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="signup-container">
+            <h2 class="text-center text-secondary">Owner Login Page</h2>
+            <form id="login-form" novalidate>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                    <div class="invalid-feedback" id="email-error"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <div class="password">
+                        <input type="password" id="password" class="form-control" required minlength="8" />
+                        <i class="fa-solid fa-eye" onclick="togglePasswordVisibility(this)" style="display: none;"></i>
+                        <i class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility(this)" ></i>
+                    </div>
+                    <div class="invalid-feedback" id="password-error"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+          <!--  <a href="customer-signup.html" class="login-link">Don't have an account? Register</a>-->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    
+        function togglePasswordVisibility(icon) {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = icon.parentElement.querySelector('.fa-eye');
+            const eyeSlashIcon = icon.parentElement.querySelector('.fa-eye-slash');
+    
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.style.display = 'inline';
+                eyeSlashIcon.style.display = 'none';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.style.display = 'none';
+                eyeSlashIcon.style.display = 'inline';
+            }
+        }
+    
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+    
+            let form = this;
+            let email = document.getElementById('email');
+            let password = document.getElementById('password');
+            let emailError = document.getElementById('email-error');
+            let passwordError = document.getElementById('password-error');
+    
+            // Define default credentials
+            const defaultEmail = 'owner@example.com'; // Replace with your default email
+            const defaultPassword = 'defaultPassword'; // Replace with your default password
+    
+            // Clear previous errors
+            emailError.textContent = '';
+            passwordError.textContent = '';
+    
+            // Validate form fields
+            let valid = true;
+    
+            if (!email.checkValidity()) {
+                emailError.textContent = 'Please enter a valid email.';
+                valid = false;
+            }
+    
+            if (!password.checkValidity()) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                valid = false;
+            }
+    
+            if (valid) {
+                // Check if credentials match default ones
+                if (email.value === defaultEmail && password.value === defaultPassword) {
+                    alert('Login successful! Redirecting to the index page...');
+                    window.location.href = 'company-index.html'; // Redirect to the index page
+                } else {
+                    // Send login request to backend
+                    fetch('http://localhost:4000/login', { // Adjust the URL if needed
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email.value, password: password.value })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === 'Login successful') {
+                            alert('Login successful! Redirecting...');
+                            localStorage.setItem('ownerLogin',true)
+                            password.value = '';
+                            email.value = '';
+                            window.location.href = 'company-index.html'; // Redirect to user interface or dashboard
+                        } else {
+                            if (data.error === 'Invalid email') {
+                                emailError.textContent = 'Invalid email address.';
+                            } else if (data.error === 'Invalid password') {
+                                passwordError.textContent = 'Invalid password.';
+                            } else {
+                                console.log(data.error);
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred during login.');
+                    });
+                }
+            } else {
+                form.classList.add('was-validated');
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
+

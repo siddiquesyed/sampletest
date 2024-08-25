@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tile & Sanitary E-commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #0A0A0A4c;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo h2 {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .menu ul li {
+            margin: 0 15px;
+        }
+
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #777;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .hero-section {
+            background-image: url("images/herosec.png");
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .hero-msg {
+            background-color: white;
+            color: black;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+        }
+
+        .shop-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background-color: #e2e7e6;
+            padding: 20px;
+        }
+
+        .heading1 {
+            width: 100%;
+            text-align: center;
+            color: #ae8f21;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .box {
+            flex: 1 1 calc(33.333% - 20px);
+            background-color: white;
+            padding: 20px;
+            margin: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .box-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 10px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-content p {
+            color: #007185;
+        }
+
+        footer {
+            margin-top: 15px;
+        }
+
+        .foot-panel1 {
+            background-color: #374759;
+            color: white;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .foot-panel2 {
+            background-color: #222f3d;
+            color: white;
+            height: 500px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        ul a {
+            display: block;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            color: #DDDDDD;
+        }
+
+        .foot-panel3 {
+            background-color: #222f3d;
+            color: white;
+            border-top: 0.5px solid white;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .foot-panel4 {
+            background-color: #0f1111;
+            color: white;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .copy-right {
+            padding-top: 5px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 40%;
+                position: absolute;
+                top: 116px;
+                right: 0;
+                background-color: #0A0A0A4c;
+                z-index: 1000;
+            }
+
+            .menu ul {
+                flex-direction: column;
+                width: 50%;
+                padding-left: 20px;
+            }
+
+            .menu ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-section {
+                height: 300px;
+            }
+
+            .box {
+                flex: 1 1 calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h2>TileSanitary</h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="company-index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="owner-SlabTiles.html">Tiles</a></li>
+                    <li><a href="owner-sanitary.html">Sanitary</a></li>
+                    <li><a href="Bill-req.html"></i>Bills Request</a></li>
+                    <li><a href="bill-history.html">Bills Paid</a></li>
+                    <li><a href="Owner-cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+                </ul>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search products...">
+                <button>Search</button>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                ☰
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <div class="hero-msg">
+            <p>You are on Tiles and sanitary store. Visit our Studio in NELLORE Santhapeta Oppt.to Vinayaka Hall</p>
+        </div>
+    </div>
+
+    <div class="shop-section" id="tiles-section">
+        <div class="heading1">
+            <h2>Tiles</h2>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-panel1" onclick="smoothScrollToTop()">
+            Back to top
+        </div>
+        <div class="foot-panel2">
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press Releases</a></li>
+                <li><a href="#">Corporate Responsibility</a></li>
+            </ul>
+        </div>
+        <div class="foot-panel3">
+            <div class="logo">
+                <h2>TileSanitary</h2>
+            </div>
+        </div>
+        <div class="foot-panel4">
+            <p class="copy-right">&copy; 2024 TileSanitary. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Array of products with correct image URLs
+        const productList = [
+            {
+                name: "Marble Slab",
+                description: "Polished marble slab suitable for flooring.",
+                price: "₹2500",
+                image: "images/marble_slab.jpg"
+            },
+            {
+                name: "Granite Tiles",
+                description: "Durable granite tiles for your kitchen.",
+                price: "₹3000",
+                image: "images/granite_tiles.jpg"
+            },
+            {
+                name: "Ceramic Wall Tiles",
+                description: "Glossy ceramic tiles for bathrooms.",
+                price: "₹1500",
+                image: "images/ceramic_wall_tiles.jpg"
+            },
+            {
+                name: "Mosaic Tiles",
+                description: "Decorative mosaic tiles for accent walls.",
+                price: "₹2000",
+                image: "images/mosaic_tiles.jpg"
+            },
+            {
+                name: "Porcelain Floor Tiles",
+                description: "Durable porcelain tiles for heavy traffic areas.",
+                price: "₹3500",
+                image: "images/porcelain_floor_tiles.jpg"
+            },
+            {
+                name: "Slate Tiles",
+                description: "Natural slate tiles for a rustic look.",
+                price: "₹4000",
+                image: "images/slate_tiles.jpg"
+            }
+        ];
+
+        const tilesSection = document.getElementById('tiles-section');
+
+        productList.forEach(product => {
+            const box = document.createElement('div');
+            box.classList.add('box');
+
+            const boxImg = document.createElement('div');
+            boxImg.classList.add('box-img');
+            boxImg.style.backgroundImage = `url(${product.image})`;
+
+            const boxContent = document.createElement('div');
+            boxContent.classList.add('box-content');
+
+            const name = document.createElement('h3');
+            name.textContent = product.name;
+
+            const description = document.createElement('p');
+            description.textContent = product.description;
+
+            const price = document.createElement('p');
+            price.textContent = `Price: ${product.price}`;
+
+            boxContent.appendChild(name);
+            boxContent.appendChild(description);
+            boxContent.appendChild(price);
+
+            box.appendChild(boxImg);
+            box.appendChild(boxContent);
+
+            tilesSection.appendChild(box);
+        });
+
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function smoothScrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

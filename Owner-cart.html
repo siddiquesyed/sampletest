@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Tile & Sanitary E-commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #0A0A0A;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .menu ul li {
+            margin: 0 15px;
+        }
+
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu ul li a i {
+            margin-right: 5px;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Main Section Styling */
+        main {
+            padding: 20px;
+        }
+
+        .menu-toggle {
+            display: block;
+            /* Show the menu toggle button on small screens */
+        }
+
+        .cart-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .cart-section h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .cart-items {
+            border-top: 1px solid #e2e7e6;
+            padding-top: 20px;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #e2e7e6;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item-actions input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .cart-item-actions button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .cart-item-actions button:hover {
+            background-color: #e60000;
+        }
+
+        .cart-summary {
+            border-top: 1px solid #e2e7e6;
+            padding-top: 20px;
+            text-align: right;
+        }
+
+        .cart-summary p {
+            font-size: 1.25rem;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .cart-summary span {
+            font-weight: bold;
+        }
+
+        /* Styling for the Generate Bill Button */
+        #generate-bill {
+            background-color: #007BFF;
+            /* Blue background color */
+            color: white;
+            /* White text color */
+            border: none;
+            /* Remove default border */
+            padding: 10px 20px;
+            /* Add padding */
+            font-size: 1rem;
+            /* Font size */
+            border-radius: 5px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Pointer cursor on hover */
+            margin-top: 20px;
+            /* Space above the button */
+            transition: background-color 0.3s, transform 0.2s;
+            /* Smooth transitions */
+            margin-right: 0%;
+            margin: 5px 0;
+        }
+
+        #generate-bill:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+
+        #generate-bill:active {
+            background-color: #004494;
+            /* Even darker blue when clicked */
+            transform: scale(0.98);
+            /* Slightly scale down on click */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #0A0A0A;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+  
+        @media screen and (max-width: 768px) {
+            .menu {
+                display: none;
+                background: rgb(95, 86, 86);
+            }
+
+            .show {
+                display: block;
+                flex-direction: column;
+                width: 40%;
+                position: absolute;
+                top: 87px;
+                right: 0;
+                padding-left: 20px;
+                
+            }
+
+            .menu-toggle {
+                display: block;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .menu ul li {
+                padding: 8px;
+          
+            }
+
+            .menu ul {
+                display: flex;
+                flex-direction: column;
+                /* align-items: center;
+                justify-content: center; */
+               margin:5px;
+            }
+
+            .menu a {
+                color: white;
+                padding: 10px 0;
+                /* Add padding to create space around each link */
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h2>TileSanitary</h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="company-index.html"> <i class="fa-solid fa-house"></i> Home </a></li>
+                    <li><a href="owner-SlabTiles.html">Tiles</a></li>
+                    <li><a href="owner-sanitary.html">Sanitary</a></li>
+                    <li><a href="Owner-cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i> Cart </a></li>
+                </ul>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                ☰
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="cart-section">
+            <h1>Owner Cart</h1>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            <div class="cart-summary">
+                <p>Total Items: <span id="total-items">0</span></p>
+                <p>Total Price: ₹<span id="total-price">0</span></p>
+            </div>
+            <button id="generate-bill" onclick="generateAndSendBill()">Generate Bill</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="foot-panel1">
+            Back to top
+        </div>
+        <div class="footer-content">
+            <p>© 2024 TileSanitary</p>
+        </div>
+    </footer>
+
+    <script>
+        function generateAndSendBill() {
+            const isLoggedIn = localStorage.getItem('ownerLogin') === 'true'; // Check if user is logged in
+
+            if (!isLoggedIn) {
+                window.location.href = 'owner-login.html'; // Redirect to login page
+                return;
+            }
+
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            console.log(cart);
+            if (cart.length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+            if (!confirm("Do you want bill really?"))
+                return
+
+            let name = prompt('Enter customer Name :')
+            let n = fun(name)
+            function fun(name) {
+                if (!name) {
+                    name = prompt('Enter customer Name :')
+                    fun(name)
+                }
+                else
+                    return name
+            }
+
+            let email = prompt('Enter customer email :')
+            if (!email) {
+                prompt('Enter customer email :')
+                return;
+            }
+            let mobile = prompt('Enter customer mobile :')
+            if (!mobile) {
+                prompt('Enter customer mobile :')
+                return;
+            }
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+           
+            
+            const billData = {
+                name: n,
+                email: email,
+                mobile: mobile,
+                data: cart,
+                status: "completed",
+                totalItems: totalItems,
+                totalPrice: totalPrice,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch('http://localhost:4000/bill-req', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(billData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(id => {
+                    window.location.href = `bill-generate.html?id=${encodeURIComponent(id)}`;
+                    console.log('Granted request  successfully:');
+
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
+            // Clear cart after saving the bill
+            localStorage.removeItem('cart');
+        }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('show');
+        }
+
+        function updateCartItemQuantity(index, newQuantity) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (index >= 0 && index < cart.length && newQuantity > 0) {
+                cart[index].quantity = newQuantity; // Update quantity of the item
+                localStorage.setItem('cart', JSON.stringify(cart)); // Save changes
+                loadCartItems(); // Recalculate totals and update display
+            }
+        }
+
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (index >= 0 && index < cart.length) {
+                cart.splice(index, 1); // Remove item at index
+                localStorage.setItem('cart', JSON.stringify(cart)); // Save changes
+                loadCartItems(); // Recalculate totals and update display
+            }
+        }
+
+        function loadCartItems() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsDiv = document.getElementById('cart-items');
+            const totalItems = document.getElementById('total-items');
+            const totalPrice = document.getElementById('total-price');
+
+            let total = 0;
+            let price = 0;
+
+            cartItemsDiv.innerHTML = ''; // Clear existing items
+
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h3>${item.name}</h3>
+                        <p>Price: ₹${item.price}</p>
+                        <p>Quantity: <input type="number" value="${item.quantity}" min="1" id="quantity-${index}" data-index="${index}" /></p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button onclick="removeItem(${index})">Remove</button>
+                    </div>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+
+                total += item.quantity;
+                price += item.price * item.quantity;
+
+                // Add event listener for the quantity input field
+                const quantityInput = document.getElementById(`quantity-${index}`);
+                quantityInput.addEventListener('change', function () {
+                    updateCartItemQuantity(index, parseInt(this.value));
+                });
+            });
+
+            totalItems.textContent = total;
+            totalPrice.textContent = price;
+        }
+
+        // Load cart items when page loads
+        document.addEventListener('DOMContentLoaded', loadCartItems);
+    </script>
+</body>
+
+</html>

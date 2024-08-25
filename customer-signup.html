@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://kit.fontawesome.com/6272304e5d.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #0A0A0A4c;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 10px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 30%;
+                background-color: #333;
+                position: absolute;
+                top: 65px;
+                right:-20px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .signup-container form {
+            width: 300px;
+        }
+
+        .signup-container .form-control {
+            margin-bottom: 15px;
+        }
+
+        .signup-container .btn {
+            width: 100%;
+        }
+
+        .password {
+            position: relative;
+        }
+
+        .password i {
+            position: absolute;
+            color: black;
+            top: 11px;
+            right: 30px;
+            cursor: pointer;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .invalid-feedback {
+            display: block;
+            color: red; /* Ensure error messages are visible */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">TileSanitary</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="customer-index.html"><i class="px-2 fa-solid fa-house"></i>Home</a></li>
+                <li><a href="#"><i class="px-2 fa-regular fa-address-card"></i>About</a></li>
+                <li><a href="#"><i class="px-2 fa-solid fa-server"></i>Services</a></li>
+                <li><a href="#"><i class="px-2 fa-solid fa-phone"></i>Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                &#9776;
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="signup-container">
+            <h2 class="text-center text-secondary">Sign Up</h2>
+            <form id="signup-form" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" required minlength="6">
+                    <div class="invalid-feedback" id="username-error"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback" id="email-error"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <div class="password">
+                        <input type="password" id="password" class="form-control" required minlength="8">
+                        <i class="fa-solid fa-eye" onclick="togglePasswordVisibility(this)" style="display: none;"></i>
+                        <i class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility(this)" ></i>
+                    </div>
+                    <div class="invalid-feedback" id="password-error"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="mobile" class="form-label">Mobile:</label>
+                    <input type="text" class="form-control" id="mobile" required pattern="[0-9]{10}">
+                    <div class="invalid-feedback" id="mobile-error"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+            <a href="customer-login.html" class="login-link">Already have an account? Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        function togglePasswordVisibility(icon) {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = icon.parentElement.querySelector('.fa-eye');
+            const eyeSlashIcon = icon.parentElement.querySelector('.fa-eye-slash');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.style.display = 'inline';
+                eyeSlashIcon.style.display = 'none';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.style.display = 'none';
+                eyeSlashIcon.style.display = 'inline';
+            }
+        }
+
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const form = this;
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const mobile = document.getElementById('mobile');
+
+            const usernameError = document.getElementById('username-error');
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+            const mobileError = document.getElementById('mobile-error');
+
+            // Clear previous errors
+            usernameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            mobileError.textContent = '';
+
+            let valid = true;
+
+            // Validate fields
+            if (!username.checkValidity()) {
+                usernameError.textContent = 'Username must be at least 6 characters long.';
+                valid = false;
+            }
+            if (!email.checkValidity()) {
+                emailError.textContent = 'Please enter a valid email address.';
+                valid = false;
+            }
+            if (!password.checkValidity()) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                valid = false;
+            }
+            if (!mobile.checkValidity()) {
+                mobileError.textContent = 'Mobile number must be 10 digits long.';
+                valid = false;
+            }
+
+            if (!valid) {
+                form.classList.add('was-validated');
+                return;
+            }
+
+            // Send data to the server
+            fetch('http://localhost:4000/submit-form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: username.value,
+                    email: email.value,
+                    password: password.value,
+                    mobile: mobile.value
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Response", data);
+
+                if (data.error) {
+                    if (data.error.email === 'Email already registered' && data.error.mobile === 'Mobile number already registered') {
+                        emailError.textContent = 'Email is already registered.';
+                        mobileError.textContent = 'Mobile number is already registered.';
+                    }
+                    else if(data.error === 'Email already registered' ){
+                        emailError.textContent = 'Email is already registered.';
+                    } else if (data.error === 'Mobile number already registered') {
+                        mobileError.textContent = 'Mobile number is already registered.';
+                    } else {
+                        console.log('Unknown server error:', data.error);
+                    }
+                } else {
+                    alert('Registration is successful, please login.');
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(err => {
+                console.error('Fetch error:', err);
+            });
+        });
+    </script>
+</body>
+</html>
