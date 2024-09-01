@@ -246,7 +246,33 @@ app.post('/change-password', async (req, res) => {
       res.status(500).json({ error: 'Server error' });
   }
 });
+let company= require('./models/company') 
+app.post('/company-login', async (req, res) => {
+  try {
+    console.log(req.body)
+    const { email, password } = req.body;
+    console.log('email',email)
+    // Find the user by email
+    const admin = await company.find({ email: email }, { password: 1 });
+    console.log(admin)
 
+    // Check if the email exists
+    if (admin.length === 0) {
+      return res.status(400).json({ error: 'Invalid email' });
+    }
+
+    // Check if the provided password matches the stored password
+    if (admin[0].password !== req.body.password) {
+      return res.status(400).json({ error: 'Invalid password' });
+    }
+
+    // If the credentials are correct
+    res.status(200).json({ message: 'Login successful' });
+  } catch (err) {
+    console.error('Error:', err); // Log error for debugging
+    res.status(500).json({ error: 'An error occurred during login.' });
+  }
+});
 app.listen(4000, () => {
   console.log(`Server is running on http://localhost:4000`);
 });
